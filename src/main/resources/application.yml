@@ -1,0 +1,59 @@
+##############
+### 공통...   
+##############
+# embeded tomcat
+server:
+#  context-path: /aaa
+  tomcat:
+    uri-encoding: UTF-8  
+    
+spring:
+  profiles:
+    active: local
+  # APPLICATION SETTINGS (SpringApplication)
+  main:
+    show-banner: true    
+  # favicon
+  mvc.favicon.enabled: false  
+  # HTTP encoding (HttpEncodingProperties)
+  http:
+    encoding:
+      charset: UTF-8 # the encoding of HTTP requests/responses
+      enabled: true # enable http encoding support
+      force: true # force the configured encoding
+  jackson:    
+    serialization:      
+      write-dates-as-timestamps: false
+  session:
+    store-type: none
+      
+logging:
+  config: classpath:logback-spring.xml
+  
+---
+
+##############
+### local
+##############
+
+env:
+  profile :  local
+  
+  
+# embeded tomcat
+server:
+  port: 8080
+  
+ 
+tomcat:
+  ajp:
+    protocol: AJP/1.3
+    port: 8019
+  
+    
+spring:
+  profiles: local
+  
+logging:
+  level:  
+    com.lotte.sample: info
