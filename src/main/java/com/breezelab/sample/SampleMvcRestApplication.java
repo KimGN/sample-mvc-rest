@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan("com.breezelab")
+//@ComponentScan("com.breezelab")
 public class SampleMvcRestApplication {
 
 	public static void main(String[] args) {

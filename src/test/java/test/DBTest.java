@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.time.LocalDateTime;
 
 public class DBTest {
 
@@ -29,5 +30,10 @@ public class DBTest {
 
     }
 
+    @Test
+    public void testTime(){
+        System.out.println(LocalDateTime.now());
+    }
 
- }
+
+}
