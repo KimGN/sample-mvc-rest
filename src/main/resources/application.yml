@@ -11,8 +11,8 @@ spring:
   profiles:
     active: local
   # APPLICATION SETTINGS (SpringApplication)
-  main:
-    show-banner: true    
+#  main:
+#    show-banner: true
   # favicon
   mvc.favicon.enabled: false  
   # HTTP encoding (HttpEncodingProperties)
@@ -45,15 +45,19 @@ server:
   port: 8080
   
  
-tomcat:
-  ajp:
-    protocol: AJP/1.3
-    port: 8019
+#tomcat:
+#  ajp:
+#    protocol: AJP/1.3
+#    port: 8019
   
     
 spring:
   profiles: local
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/remoto?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul
+    username: root
+    password: 141201
   
-logging:
-  level:  
-    com.lotte.sample: info
+#logging:
+#  level:
+#    com.lotte.sample: info
