@@ -13,6 +13,7 @@ dependency 추가 mysql, mybatis, JDBC(TOMCAT)
         * netstat -an | grep 3306 // 디비 포트 검색 사용여부 확인
     * was 에서 디비접근을 못하는 것을 확인 디비 콘피그 작성 필요
 * 디비 콘피그 
-    * org.apache.tomcat 의존성 추가   
-    * org.apache.commons.dbcp2 추가 필요함
+    * config 작성 완료하였지만 was에 DB가 연결인 되지 않음 데이터소스를 읽지 못해서 그러는거 같음 다른 방법 으로 시도 해봐야 하나 고민됨 
+    
+    
 
