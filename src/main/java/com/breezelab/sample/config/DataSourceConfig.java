@@ -22,15 +22,14 @@ public class DataSourceConfig {
         System.out.println("------------------------------------------------------------------------------");
         return DataSourceBuilder.create().build();
     }
-
+//
 //    @Bean
 //    public DataSource dataSource(){
 //        // 러닝할때 DataSource를 거치치 않고 넘어가나...???? println 잘나옴;;
-//        System.out.println("_______________-------AAAAAAAAAAAAAAA_______AAAA");
 //        return DataSourceBuilder
 //                .create()
 //                .username("root")
-//                .password("141201")
+//                .password("141201aaaaa")
 //                .url("jdbc:mysql://127.0.0.1:3306/remoto?serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false")
 //                .driverClassName("com.mysql.cj.jdbc.Driver")
 //                .build();

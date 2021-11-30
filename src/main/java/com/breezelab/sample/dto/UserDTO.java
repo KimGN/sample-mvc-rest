@@ -3,7 +3,6 @@ package com.breezelab.sample.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
 
 import java.time.LocalDateTime;
 
@@ -12,8 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class UserDTO {
 
-    @Id
-    private String id;
+    private int id;
 
     private String account;
 
@@ -23,12 +21,12 @@ public class UserDTO {
 
     private String email;
 
-    private LocalDateTime createdAt;
+    private LocalDateTime created_at;
 
-    private String createdBy;
+    private String created_by;
 
-    private LocalDateTime updatedAt;
+    private LocalDateTime updated_at;
 
-    private String updatedBy;
+    private String updated_by;
 
 }

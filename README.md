@@ -8,6 +8,12 @@
 ## DataBase 연결
 dependency 추가 mysql, mybatis, JDBC(TOMCAT)
 
+###Datasource
+* 커넥션 풀의 커넥션을 관리하기 위한 객체
+* 이 객체를 통해 커넥션을 획득 반납 등의 작업을 한다.
+
+
+#### LOG
 * 처음 yml datasource 기본 설으로 데이터베이스에 접근하였으나 접속이 잘 되지 않는거 같음 
     * 터미널 명령어로 데이터베이스 사용 여부 확인 
         * netstat -an | grep 3306 // 디비 포트 검색 사용여부 확인

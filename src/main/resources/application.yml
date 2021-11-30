@@ -49,7 +49,7 @@ spring:
 #      password: 141201
 #      driver-class-name: com.mysql.cj.jdbc.Driver
 #      register-mbeans: true
-    url: jdbc:mysql://127.0.0.1:3306/remoto?serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/testDB?serverTimezone=UTC&allowPublicKeyRetrieval=true&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 141201

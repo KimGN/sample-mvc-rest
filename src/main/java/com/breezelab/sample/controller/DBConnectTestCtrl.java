@@ -13,8 +13,12 @@ import java.util.List;
 @RequestMapping("/api")
 public class DBConnectTestCtrl {
 
-    @Autowired
+
     private UserDAO userDao;
+
+    public DBConnectTestCtrl(UserDAO userDao){
+        this.userDao = userDao;
+    }
 
     @GetMapping("/user")
     public List<UserDTO> UserPage(){
@@ -22,5 +26,9 @@ public class DBConnectTestCtrl {
         return userDao.getTestData();
     }
 
+    @GetMapping("/test")
+    public String testPage(){
+        return "TEST PAGE";
+    }
 
 }
