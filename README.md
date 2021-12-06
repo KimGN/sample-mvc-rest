@@ -10,5 +10,9 @@ dependency 추가 mysql, mybatis
 
 ## Spring security 로그인 회원가입 구현 
 
+예제 https://spring.io/guides/gs/securing-web/
+
+의존성 주입 <br>
+spring-boot-starter-security
 
 
