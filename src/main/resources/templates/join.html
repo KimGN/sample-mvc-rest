@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+  <title>Hello My page Sing Up</title>
+</head>
+<body>
+<h1>회원가입</h1>
+<form th:action="@{/singUpApi}" method="post">
+  <span>ID</span> <input type="text" name="account">
+  <br>
+  <span>PW</span> <input type="text" name="password">
+  <br>
+  <button type="submit">확인</button>
+</form>
+</body>
+</html>
