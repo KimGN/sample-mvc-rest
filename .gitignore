@@ -1,2 +1,3 @@
 # Project exclude paths
-/target/classes/
+/target/classes/.DS_Store
+.DS_Store
