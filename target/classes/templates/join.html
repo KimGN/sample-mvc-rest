@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Join</title>
+    <style>
+      span{font-size: 20px;}
+    </style>
+</head>
+<body>
+  <div style=" width: 1000px; height: 600px;margin: 0 auto; border:1px solid #000">
+
+    <h1>회원 가입</h1>
+    <form th:action="@{/join/submit}" method="post" onsubmit="return submitFn(this);">
+      <span>아이디</span> <input type="text" name="account">
+      <br>
+      <span>비밀 번호</span> <input type="text" name="password">
+      <br>
+      <span>비밀 번호 확인</span> <input type="text" name="password_check">
+
+      <input type="submit" value="회원가입">
+    </form>
+    <script>
+      function submitFn(from){
+        let pw = from.password.value;
+        let pwChk = from.password_check.value;
+
+        alert(pw === pwChk)
+
+      }
+
+    </script>
+  </div>
+</body>
+</html>

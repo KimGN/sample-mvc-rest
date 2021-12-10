@@ -15,7 +15,12 @@ dependency 추가 mysql, mybatis
 의존성 주입 <br>
 spring-boot-starter-security
 
-aaa
-
+## Remove DS_Store
+파일 삭제 <br>
+find . -name .DS_Store -print0 | xargs -0 git rm -f --ignore-unmatch
+앞으로도 추가 안하고 싶으면 <br>
+echo .DS_Store >> .gitignore
+<br>
+<br>
 
 
