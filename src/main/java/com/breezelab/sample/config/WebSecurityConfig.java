@@ -30,24 +30,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //권한이 없을시 권한페이지로 이동할경우 로그인 페이지로 이동
                 .and()
                 .formLogin()
-                .loginPage("/loginForm").permitAll()
-                .and()
-                .logout()
-                .permitAll();
+                .loginPage("/loginForm")
+                //.usernameParameter()
+                // login 주소가 호출 되면 시큐리티가 낚아채서 대신 로그인 해준다.
+                .loginProcessingUrl("/login")
+                .defaultSuccessUrl("/");
+
     }
 
-    @Bean
-    @Override
-    public UserDetailsService userDetailsService() {
-        UserDetails user =
-                User.withDefaultPasswordEncoder()
-                        .username("user")
-                        .password("1234")
-                        .roles("USER")
-                        .build();
-
-        return new InMemoryUserDetailsManager(user);
-    }
+//    @Bean
+//    @Override
+//    public UserDetailsService userDetailsService() {
+//        UserDetails user =
+//                User.withDefaultPasswordEncoder()
+//                        .username("user")
+//                        .password("1234")
+//                        .roles("USER")
+//                        .build();
+//
+//        return new InMemoryUserDetailsManager(user);
+//    }
 
     // password 암호화
     @Bean

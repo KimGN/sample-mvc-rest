@@ -12,10 +12,13 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-    @Select("SELECT * FROM User")
+    @Select("SELECT * FROM user WHERE username=#{username}")
+    User getUsername(@Param("username") String username);
+
+    @Select("SELECT * FROM user")
     List<User> getUserList();
 
-    @Insert("INSERT INTO user(account, password, email, role, created_at) VALUES(#{account},#{password},#{email},#{role},#{created_at})")
-    int insertUser(@Param("account") String account, @Param("password") String password, @Param("email") String email, @Param("role") String role, @Param("created_at") LocalDateTime created_at);
+    @Insert("INSERT INTO user(username, password, email, role, created_at) VALUES(#{username},#{password},#{email},#{role},#{created_at})")
+    int insertUser(@Param("username") String username, @Param("password") String password, @Param("email") String email, @Param("role") String role, @Param("created_at") LocalDateTime created_at);
 
 }

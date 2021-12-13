@@ -69,7 +69,7 @@ public class IndexController {
         user.setPassword(encPassword);
 
         System.out.println(user);
-//        mapper.insertUser(user.getAccount(),user.getPassword(),user.getEmail(),user.getRole(),user.getCreatedAt());
+        mapper.insertUser(user.getUsername(),user.getPassword(),user.getEmail(),user.getRole(),user.getCreatedAt());
         return "redirect:/loginForm";
     }
 
