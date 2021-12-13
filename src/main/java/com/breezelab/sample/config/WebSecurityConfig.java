@@ -1,4 +1,4 @@
-package com.breezelab.sample.securityweb;
+package com.breezelab.sample.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
