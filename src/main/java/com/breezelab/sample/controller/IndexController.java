@@ -35,24 +35,23 @@ public class IndexController {
         return "manager";
     }
 
-    @RequestMapping(value = "/login" , method = RequestMethod.GET)
-    @ResponseBody
-    public String login(){
-        return "login";
+    @RequestMapping(value = "/loginForm" , method = RequestMethod.GET)
+    public String loginForm(){
+        return "loginForm";
+    }
+
+    @RequestMapping(value = "/joinForm" , method = RequestMethod.GET)
+    public String joinForm(){
+        return "joinForm";
     }
 
     @RequestMapping(value = "/join" , method = RequestMethod.GET)
     @ResponseBody
-    // 회원 가입
+    // 회원 가입 살행
     public String join(){
         return "join";
     }
 
-    @RequestMapping(value = "/joinProc" , method = RequestMethod.GET)
-    @ResponseBody
-    public String joinProc(){
-        return "회원가입 완료됨";
-    }
 
 
 }

@@ -54,7 +54,7 @@ server:
 spring:
   profiles: local
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/remoto?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul
+    url: jdbc:mysql://127.0.0.1:3306/security?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul
     username: root
     password: 141201
   

@@ -20,11 +20,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //user 경로는 로그인된 회원 누구나
                 .antMatchers("/user/**").authenticated()
                 //manamger 경로는 권한 가진 사람만 (manager or admin)
-                .antMatchers("/manamger/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')")
+                .antMatchers("/manager/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')")
                 //admin 경로는 권한 가진 사람만 (admin)
                 .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
                 //다른 경로는 접속 허용
-                .anyRequest().permitAll();
+                .anyRequest().permitAll()
+                //권한이 없을시 권한페이지로 이동할경우 로그인 페이지로 이동
+                .and()
+                .formLogin()
+                .loginPage("/loginForm").permitAll()
+                .and()
+                .logout()
+                .permitAll();
     }
 
     @Bean
