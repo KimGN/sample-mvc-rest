@@ -11,16 +11,19 @@ package com.breezelab.sample.config.auth;
 //UserDetails(PrincipalDetails) 객채 생성
 //Authentication 객체를 만들어서 등록 => PrincipalDetailsService
 import com.breezelab.sample.model.User;
+import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Map;
 
-public class PrincipalDetails implements UserDetails {
+@Data
+public class PrincipalDetails implements UserDetails, OAuth2User {
 
-
-    private User user; // 콤포지션
+    private User user; // Composition - 구성
 
     public PrincipalDetails(User user){
         this.user = user;
@@ -38,6 +41,8 @@ public class PrincipalDetails implements UserDetails {
         });
         return collect;
     }
+
+
 
     @Override
     public String getPassword() {
@@ -74,5 +79,18 @@ public class PrincipalDetails implements UserDetails {
         // 현재시간 - 로긴시간 => 초과하면 휴먼 계정
         return true;
     }
+
+
+    // ------ OAuth2 -----
+    @Override
+    public Map<String, Object> getAttributes() {
+        return null;
+    }
+
+    @Override
+    public String getName() {
+        return null;
+    }
+
 
 }

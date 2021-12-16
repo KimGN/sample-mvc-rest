@@ -1,9 +1,16 @@
 package com.breezelab.sample.controller;
 
+import com.breezelab.sample.config.auth.PrincipalDetails;
 import com.breezelab.sample.mappers.UserMapper;
 import com.breezelab.sample.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,6 +27,30 @@ public class IndexController {
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+
+
+    @RequestMapping(value = "/test/login" , method = RequestMethod.GET)
+    @ResponseBody
+    public String loginTest(Authentication authentication,
+                            @AuthenticationPrincipal PrincipalDetails userDetails){
+        System.out.println("test/login ===================================");
+        PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
+        System.out.println("authentication :" + principalDetails.getUser());
+        System.out.println("userDetails : " + userDetails.getUser());
+        return "세션 정보 확인";
+    }
+
+    @RequestMapping(value = "/test/oauth/login" , method = RequestMethod.GET)
+    @ResponseBody
+    public String loginOAuthTest(Authentication authentication,
+                            @AuthenticationPrincipal OAuth2User oauth){
+        System.out.println("test/login ===================================");
+        OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
+        System.out.println("authentication :" + oAuth2User.getAttributes());
+        System.out.println("OAuth : " + oauth.getAttributes());
+        return "OAuth 세션 정보 확인";
+    }
+
 
     @RequestMapping(value = "/" , method = RequestMethod.GET)
     public String index(){
@@ -73,6 +104,21 @@ public class IndexController {
         return "redirect:/loginForm";
     }
 
+
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value = "/info" ,method = RequestMethod.GET)
+    @ResponseBody
+    public String info(){
+        return "개인정보";
+    }
+
+    // 페이지가 실생하기 직전에 참조한다
+    @PreAuthorize("hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN')")
+    @RequestMapping(value = "/data" ,method = RequestMethod.GET)
+    @ResponseBody
+    public String data(){
+        return "data";
+    }
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     @ResponseBody
     public List<User> sqlTest(){

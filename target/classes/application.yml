@@ -57,7 +57,18 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/security?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Seoul&useSSL=false
     username: root
     password: 141201
-  
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: 507762690250-rgbv3fia48oj9lbpcrvtn3bo6pretr8v.apps.googleusercontent.com
+            client-secret: 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
+            scope:
+            - email
+            - profile
+
+
 #logging:
 #  level:
 #    com.lotte.sample: info

@@ -1,7 +1,10 @@
 package com.breezelab.sample.config;
 
+import com.breezelab.sample.config.oauth.PrincipalOauth2UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -13,7 +16,15 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 @Configuration
 @EnableWebSecurity // 스프링 시큐리티 필터가 스프링 필터체인에 등록
+//secured 어노테이션 활성화 어노테이션으로 ROLE controller 등록 @Secured("ROLE_ADMIN")
+//여러 가지 등록을 하고 싶으면 prePostEnabled --  @PreAuthorize , @PostAuthorize
+// @PreAuthorize("hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN')" - 메서드가 실행되기전
+// @PostAuthorize() - 메서드가 실행된 후
+@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private PrincipalOauth2UserService principalOauth2UserService;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -34,7 +45,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 //.usernameParameter()
                 // login 주소가 호출 되면 시큐리티가 낚아채서 대신 로그인 해준다.
                 .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/");
+                .defaultSuccessUrl("/")
+                .and()
+                .oauth2Login()
+                // 구글 로그인이 완료된 뒤의 후처리가 필요함 Tip. 코드X (엑세스토큰 + 사용자프로필정보 O)
+                .loginPage("/loginForm")
+                .userInfoEndpoint()
+                .userService(principalOauth2UserService);
+
 
     }
 
