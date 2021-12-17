@@ -21,4 +21,7 @@ public interface UserMapper {
     @Insert("INSERT INTO user(username, password, email, role, created_at) VALUES(#{username},#{password},#{email},#{role},#{created_at})")
     int insertUser(@Param("username") String username, @Param("password") String password, @Param("email") String email, @Param("role") String role, @Param("created_at") LocalDateTime created_at);
 
+    @Insert("INSERT INTO user(username, password, email, role, created_at, provider, provider_id) VALUES(#{username},#{password},#{email},#{role},#{created_at}, #{provider}, #{provider_id})")
+    int insertOAuthUser(@Param("username") String username, @Param("password") String password, @Param("email") String email, @Param("role") String role, @Param("created_at") LocalDateTime created_at, @Param("provider") String provider, @Param("provider_id") String provider_id);
+
 }

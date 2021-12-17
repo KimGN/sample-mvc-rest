@@ -12,10 +12,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -57,10 +60,14 @@ public class IndexController {
         return "index";
     }
 
+
+
+    // OAuth2 로그인 , 일반 로그인을해도 분기 처리 할필요가 없다
     @RequestMapping(value = "/user" , method = RequestMethod.GET)
     @ResponseBody
     // 로그인 된사람만
-    public String user(){
+    public String user(@AuthenticationPrincipal PrincipalDetails principalDetails){
+        System.out.println("principalDetails" + principalDetails.getUser());
         return "user";
     }
 
@@ -90,7 +97,9 @@ public class IndexController {
 
     @RequestMapping(value = "/join" , method = RequestMethod.POST)
     // 회원 가입 살행
-    public String join(User user){
+    public ModelAndView join(User user){
+
+        ModelAndView model = new ModelAndView();
 
         // 페스워트 암호화 해야함 - 권한과 인증
         String rawPassword = user.getPassword();
@@ -99,9 +108,19 @@ public class IndexController {
         user.setRole("ROLE_USER");
         user.setPassword(encPassword);
 
-        System.out.println(user);
-        mapper.insertUser(user.getUsername(),user.getPassword(),user.getEmail(),user.getRole(),user.getCreatedAt());
-        return "redirect:/loginForm";
+        User userEntity = mapper.getUsername(user.getUsername());
+
+        if(userEntity == null){
+            // 데이터 베이스 insert
+            mapper.insertUser(user.getUsername(),user.getPassword(),user.getEmail(),user.getRole(),user.getCreatedAt());
+            model.setViewName("loginForm");
+        }else{
+            // 사용중인 아이디
+            System.out.println("사용중인 아이디");
+            model.addObject("joinErr" , "IDE");
+            model.setViewName("/joinForm");
+        }
+        return model;
     }
 
 

@@ -20,12 +20,11 @@ public class PrincipalDetailsService implements UserDetailsService {
 
     @Override
     // input 의 name 과 메칭 바꾸고 싶으면 config => .usernameParameter()
+    // 함수가 종료 될때 @AuthenticationPrincipal 어노테이션이 만들어 진다.
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException{
         // user 가 있는지 검색 해서 존재 하면
         // Session = Authentication = UserDetails(PrincipalDetails) 순차적으로 등록이 된다
-        System.out.println("---------------------------");
         System.out.println("username : " + username);
-        System.out.println("---------------------------");
         User userEntity = mapper.getUsername(username);
         if(userEntity != null){
             return new PrincipalDetails(userEntity);
