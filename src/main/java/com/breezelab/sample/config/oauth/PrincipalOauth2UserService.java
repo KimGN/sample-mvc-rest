@@ -1,6 +1,9 @@
 package com.breezelab.sample.config.oauth;
 
 import com.breezelab.sample.config.auth.PrincipalDetails;
+import com.breezelab.sample.config.oauth.provider.GoogleUserInfo;
+import com.breezelab.sample.config.oauth.provider.NaverUserInfo;
+import com.breezelab.sample.config.oauth.provider.OAuth2UserInfo;
 import com.breezelab.sample.mappers.UserMapper;
 import com.breezelab.sample.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,8 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
     @Autowired
     UserMapper userMapper;
 
+
+
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException{
 
@@ -27,35 +32,37 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
         System.out.println("getAttributes : " + oAuth2User.getAttributes());
         // 강제로 회원가입을 진행
         String provider = userRequest.getClientRegistration().getRegistrationId(); // google
-        String providerId = (String) oAuth2User.getAttributes().get("sub");
+
+
+
+        OAuth2UserInfo oAuth2UserInfo = null;
+
+        if("naver".equals(provider)){
+            oAuth2UserInfo = new NaverUserInfo(oAuth2User.getAttributes());
+            System.out.println("getAttributes-naver : " + oAuth2User.getAttributes().get("response"));
+        }else{
+            // google
+            oAuth2UserInfo = new GoogleUserInfo(oAuth2User.getAttributes());
+
+        }
+
+        String providerId = oAuth2UserInfo.getProviderId();
         String username = provider+"_"+providerId; // google_113093857194453228426;
-        String email = (String) oAuth2User.getAttributes().get("email");
+        String email = oAuth2UserInfo.getEmail();
         String role = "ROLE_USER";
         LocalDateTime createAt = LocalDateTime.now();
 
-        User userEntity = userMapper.getUsername(username);
-
-
-
-
-
-
-        if(userEntity == null){
-
-            // naver
-            if("naver".equals(provider)){
-
-            }else{
-                // google
-                userMapper.insertOAuthUser(username, "null", email, role, createAt, provider, providerId);
-            }
-        }
-
-
         System.out.println("------------------------------------");
         System.out.println("username : " +  username);
+        System.out.println("email : " +  email);
         System.out.println( "OAuth : " + userMapper.getUsername(username));
-        System.out.println("User : " + userMapper.getUsername("admin"));
+
+
+        User userEntity = userMapper.getUsername(username);
+
+        if(userEntity == null){
+            userMapper.insertOAuthUser(username, "null", email, role, createAt, provider, providerId);
+        }
 
         return new PrincipalDetails(userEntity, oAuth2User.getAttributes());
     }
