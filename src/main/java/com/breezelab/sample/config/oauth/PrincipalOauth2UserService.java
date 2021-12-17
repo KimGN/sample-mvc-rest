@@ -35,8 +35,20 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
 
         User userEntity = userMapper.getUsername(username);
 
+
+
+
+
+
         if(userEntity == null){
-            userMapper.insertOAuthUser(username, "null", email, role, createAt, provider, providerId);
+
+            // naver
+            if("naver".equals(provider)){
+
+            }else{
+                // google
+                userMapper.insertOAuthUser(username, "null", email, role, createAt, provider, providerId);
+            }
         }
 
 
