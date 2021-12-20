@@ -43,7 +43,7 @@ env:
 # embeded tomcat
 server:
   port: 8080
-  
+
  
 #tomcat:
 #  ajp:
