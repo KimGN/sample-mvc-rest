@@ -30,8 +30,28 @@ blockquote, q {quotes: none;}
 table {border-collapse: collapse;border-spacing: 0;}
 /* reset end */
 /*header*/
-#header{width: 100%;height: 100px;border-bottom: 1px solid #000; margin: 0 0 30px;}
+#header{
+    width: 100%;
+    height: 100px;
+    border-bottom: 1px solid #000;
+    margin: 0 0 30px;
+    position: relative;
+}
 
+
+.page_list_wrap{
+    padding: 20px;
+}
+.page_list_wrap li{
+    box-sizing: border-box;
+    padding: 0 0 0 30px;
+    margin: 10px 0;
+}
+.page_list_wrap li a{
+    color: #000;
+    font-size: 20px;
+    text-decoration:ß none;
+}
 
 
 

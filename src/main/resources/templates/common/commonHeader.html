@@ -1,3 +1,9 @@
 <header th:fragment="commonHeader" id="header">
   <h1>header</h1>
+  <div class="login_wrap">
+    <a class="link_btn" th:href="@{/loginForm}">로그인</a>
+  </div>
+  <form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+  </form>
 </header>
