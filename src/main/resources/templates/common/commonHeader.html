@@ -1,9 +1,13 @@
-<header th:fragment="commonHeader" id="header">
+<header th:fragment="commonHeader" id="header" xmlns:sec="http://www.w3.org/1999/xhtml">
   <h1>header</h1>
   <div class="login_wrap">
     <a class="link_btn" th:href="@{/loginForm}">로그인</a>
   </div>
-  <form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
-  </form>
+  <div sec:authorize="isAuthenticated()">
+    <p>[[! ]] 님 반갑습니다.</p>
+    <form th:action="@{/logout}" method="post">
+      <input type="submit" value="Sign Out"/>
+    </form>
+  </div>
+
 </header>
