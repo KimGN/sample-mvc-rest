@@ -1,0 +1,16 @@
+<header th:fragment="commonHeader" id="header" xmlns:sec="http://www.w3.org/1999/xhtml">
+  <h1 class="logo">header</h1>
+  <div class="login_wrap">
+    <div>
+      <!-- 로그인 전 -->
+      <a class="link_btn" th:href="@{/loginForm}">로그인</a>
+    </div>
+    <div sec:authorize="isAuthenticated()">
+      <!-- 로그인 후 -->
+      [[${#httpServletRequest.remoteUser}]] 반갑습니다.
+      <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Sign Out"/>
+      </form>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,75 @@
+/* reset */
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display: block;}
+body {line-height: 1;}
+ol, ul {list-style: none;}
+blockquote, q {quotes: none;}
+table {border-collapse: collapse;border-spacing: 0;}
+/* reset end */
+/*header*/
+#header{
+    width: 100%;
+    height: 100px;
+    border-bottom: 1px solid #000;
+    margin: 0 0 30px;
+    position: relative;
+}
+.logo{
+    margin: 30px 20px 0;
+    display: inline-block;
+}
+.login_wrap{
+    margin: 30px 20px 0;
+    display: inline-block;
+}
+.page_list_wrap{
+    padding: 20px;
+}
+.page_list_wrap li{
+    box-sizing: border-box;
+    padding: 0 0 0 30px;
+    margin: 10px 0;
+}
+.page_list_wrap li:before{
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 4px;
+    background-color: #000;
+}
+.page_list_wrap li a{
+    color: #000;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+
+
+
+
+
+
+

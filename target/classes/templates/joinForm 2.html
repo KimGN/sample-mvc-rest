@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입 페이지</title>
+</head>
+<body>
+  <h1>회원가입 페이지</h1>
+  <hr>
+  <form th:action="@{/join}" method="post">
+    <input type="text" placeholder="ID" name="username"><br><br>
+    <div th:if="${joinErr}">
+        <p>중복된 아이디 입니다.</p>
+    </div>
+    <input type="password" placeholder="PW" name="password"><br><br>
+    <input type="text" placeholder="Email" name="email"><br><br>
+    <button type="submit">가입하기</button>
+  </form>
+</body>
+</html>

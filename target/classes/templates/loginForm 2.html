@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인 페이지</title>
+</head>
+<body>
+    <h1>로그인 페이지 입니다 ㅎㅎ</h1>
+    <div th:if="${param.error}">
+        로그인 실패
+    </div>
+    <div th:if="${param.logout}">
+        로그아웃 됬습니다.
+    </div>
+    <form th:action="@{/login}" method="post">
+        <div><label> User Name : <input type="text" name="username"/> </label></div>
+        <div><label> Password: <input type="password" name="password"/> </label></div>
+        <div><input type="submit" value="Sign In"/></div>
+    </form>
+    <br>
+    <div>
+        <a th:href="@{/joinForm}">회원가입 하러가기</a>
+    </div>
+    <br>
+    <div>
+        <a th:href="@{/oauth2/authorization/google}">구글 로그인</a>
+    </div>
+    <div>
+        <a th:href="@{/oauth2/authorization/naver}">네이버 로그인</a>
+    </div>
+    <br>
+    <div>
+        <a th:href="@{/}">HOME</a>
+    </div>
+
+</body>
+</html>

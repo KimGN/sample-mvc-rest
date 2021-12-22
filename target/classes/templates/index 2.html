@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>HOME</title>
+    <th:block th:replace="/common/commonhead"></th:block>
+</head>
+<body>
+    <header th:replace="/common/commonHeader :: commonHeader"></header>
+    <h1>메인 페이지 입니다.</h1>
+    <div id="container">
+        <h2>Page List</h2>
+        <ul class="page_list_wrap">
+            <li>
+                <a th:href="@{/user}">User</a>
+            </li>
+            <li>
+                <a th:href="@{/manager}">Manager</a>
+            </li>
+            <li>
+                <a th:href="@{/admin}">Admin</a>
+            </li>
+            <li>
+                <a th:href="@{/test/login}">User Session</a>
+            </li>
+            <li>
+                <a th:href="@{/test/oauth/login}">OAuth User Session</a>
+            </li>
+            <li>
+                <a th:href="@{/test/oauth/login}">OAuth User Session</a>
+            </li>
+        </ul>
+
+    </div>
+
+
+
+</body>
+</html>
